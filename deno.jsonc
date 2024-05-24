@@ -1,5 +1,5 @@
 {
   "name": "@2or3godzillas/fp-try",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "exports": "./mod.ts"
 }
