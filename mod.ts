@@ -26,14 +26,14 @@ function Failure(error: unknown): Failure {
 * @param fn - The function to be executed.
 * @returns A result object indicating success (with data) or failure (with error).
 */
-export function Try<T>(fn: () => T): Extract<T, Promise<unknown>> extends never ? Failure | Success<T> : Promise<Failure | Success<Awaited<T>>>;
+export default function Try<T>(fn: () => T): Extract<T, Promise<unknown>> extends never ? Failure | Success<T> : Promise<Failure | Success<Awaited<T>>>;
 /**
 * Executes a function and returns a result object indicating success or failure.
 *
 * @param fn - The function to be executed.
 * @returns A result object indicating success (with data) or failure (with error).
 */
-export function Try<T>(fn: () => T): Failure | Success<T> | Promise<Failure | Success<T>> {
+export default function Try<T>(fn: () => T): Failure | Success<T> | Promise<Failure | Success<T>> {
 	try {
 		const result = fn();
 		if (result instanceof Promise) return result.then(Success, Failure)
