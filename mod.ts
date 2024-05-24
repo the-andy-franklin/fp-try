@@ -21,12 +21,18 @@ function Failure(error: unknown): Failure {
 }
 
 /**
-* Executes a function and returns a result object indicating success or failure.
+* This is a better function signature that can tell if any of the potential return types are Promises.
 *
 * @param fn - The function to be executed.
 * @returns A result object indicating success (with data) or failure (with error).
 */
 export function Try<T>(fn: () => T): Extract<T, Promise<unknown>> extends never ? Failure | Success<T> : Promise<Failure | Success<Awaited<T>>>;
+/**
+* Executes a function and returns a result object indicating success or failure.
+*
+* @param fn - The function to be executed.
+* @returns A result object indicating success (with data) or failure (with error).
+*/
 export function Try<T>(fn: () => T): Failure | Success<T> | Promise<Failure | Success<T>> {
 	try {
 		const result = fn();
