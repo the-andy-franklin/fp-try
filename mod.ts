@@ -1,4 +1,3 @@
-// deno-fmt-ignore-file
 export type Success<T> = { success: true; failure: false; data: T; };
 export type Failure = { success: false; failure: true; error: Error };
 
@@ -11,7 +10,7 @@ function Failure(error: unknown): Failure {
 	return { success: false, failure: true, error: new Error(JSON.stringify(error)) };
 }
 
-export function Try<T>(fn: () => T): Extract<T, Promise<any>> extends never ? Failure | Success<T> : Promise<Failure | Success<Awaited<T>>>;
+export function Try<T>(fn: () => T): Extract<T, Promise<unknown>> extends never ? Failure | Success<T> : Promise<Failure | Success<Awaited<T>>>;
 export function Try<T>(fn: () => T): Failure | Success<T> | Promise<Failure | Success<T>> {
 	try {
 		const result = fn();
