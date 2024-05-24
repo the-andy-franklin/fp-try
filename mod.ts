@@ -21,7 +21,7 @@ function Failure(error: unknown): Failure {
 }
 
 /**
-* This is a better function signature that can tell if any of the potential return types are Promises.
+* Executes a function and returns a result object indicating success or failure.
 *
 * @param fn - The function to be executed.
 * @returns A result object indicating success (with data) or failure (with error).
