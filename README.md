@@ -14,7 +14,7 @@ By using `Try`, you can:
 ## Usage
 
 ```typescript
-import { Try } from 'jsr:@2or3godzillas/fp-try';
+import Try from 'jsr:@2or3godzillas/fp-try';
 
 const syncResult = Try(() => {
  // some task that might throw
