@@ -10,6 +10,12 @@ function Failure(error: unknown): Failure {
 	return { success: false, failure: true, error: new Error(JSON.stringify(error)) };
 }
 
+/**
+* Executes a function and returns a result object indicating success or failure.
+*
+* @param fn - The function to be executed.
+* @returns A result object indicating success (with data) or failure (with error).
+*/
 export function Try<T>(fn: () => T): Extract<T, Promise<unknown>> extends never ? Failure | Success<T> : Promise<Failure | Success<Awaited<T>>>;
 export function Try<T>(fn: () => T): Failure | Success<T> | Promise<Failure | Success<T>> {
 	try {
