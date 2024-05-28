@@ -14,7 +14,7 @@ By using `Try`, you can:
 ## Usage
 
 ```typescript
-import Try from 'jsr:@2or3godzillas/fp-try';
+import { Try } from 'jsr:@2or3godzillas/fp-try';
 
 const syncResult = Try(() => {
  // some task that might throw
@@ -23,7 +23,7 @@ const syncResult = Try(() => {
 
 const asyncResult = await Try(() => {
  return fetch('https://api.example.com/data')
-   .then(response => response.json());
+  .then(response => response.json());
 })
 
 if (result.success) console.log(result.data);
