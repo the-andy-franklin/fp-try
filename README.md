@@ -21,13 +21,16 @@ const syncResult = Try(() => {
  return 'Hello, world!';
 });
 
+if (syncResult.success) console.log(syncResult.data);
+else console.error(syncResult.error);
+
 const asyncResult = await Try(() => {
  return fetch('https://api.example.com/data')
   .then(response => response.json());
 })
 
-if (result.success) console.log(result.data);
-else console.error(result.error);
+if (asyncResult.success) console.log(asyncResult.data);
+else console.error(asyncResult.error);
 ```
 
 The `Try` function takes a callback that contains your synchronous or asynchronous operation. It returns a `Success` object if the operation completes successfully, or a `Failure` object if an error occurs.

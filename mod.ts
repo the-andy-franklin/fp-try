@@ -2,6 +2,7 @@ export type Success<T> = { success: true; failure: false; data: T; };
 export type Failure = { success: false; failure: true; error: Error };
 
 /**
+ * creates a Success object
  * 
  * @param data result from a successful function
  * @returns a Success object
@@ -11,13 +12,18 @@ export function Success<T>(data: T): Success<T> {
 }
 
 /**
+ * creates a Failure object
  * 
  * @param error result from a failed function
  * @returns a Failure object
  */
 export function Failure(error: unknown): Failure {
-	if (error instanceof Error) return { success: false, failure: true, error };
-	return { success: false, failure: true, error: new Error(JSON.stringify(error)) };
+	return {
+		success: false,
+		failure: true,
+		error: error instanceof Error ? error :
+			new Error(typeof error === 'string' ? error : JSON.stringify(error))
+	};
 }
 
 /**
